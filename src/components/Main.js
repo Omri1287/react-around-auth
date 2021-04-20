@@ -3,6 +3,7 @@ import jacques from "../images/jacques-cousteau.jpg";
 import api from '../Utils/Api'
 import Card from './Card'
 import { currentUserContext } from '../contexts/CurrentUserContext'
+import Header from "./Header";
 
 
 function Main(props) {
@@ -39,6 +40,7 @@ function Main(props) {
 
     return (
         <main className="content">
+            <Header link={'/signin'} text={"Log out"} onClick={props.handleSignOut} userEmail={props.userEmail} />
             <section className="profile">
                 <div className="profile__avatar">
                     <img src={currentUser.avatar} alt="profile picture" className="profile__photo"/>

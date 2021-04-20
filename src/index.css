@@ -8,6 +8,7 @@
 @import url(./blocks/elements/elements.css);
 @import url(./blocks/modal/modal.css);
 @import url(./blocks/login/login.css);
+@import url(./blocks/link/link.css);
 
 body {
   margin: 0;
