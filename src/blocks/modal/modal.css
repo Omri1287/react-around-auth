@@ -10,9 +10,9 @@
 @import url(./__save/_disabled/modal__save_disabled.css);
 @import url(./__save/modal__save.css);
 @import url(./modal_large_size.css);
-
-
-
+@import url(./__content/modal__content.css);
+@import url(./__icon/modal__icon.css);
+@import url(./__infotool-text/modal__infotool-text.css);
 
 .modal{
     height: 100%;
@@ -47,3 +47,4 @@
 
     }
 }
+
