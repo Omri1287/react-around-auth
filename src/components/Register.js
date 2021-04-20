@@ -1,8 +1,7 @@
 import React, {button, useEffect, useState} from 'react';
-import { Link, useHistory, withRouter, useEffect } from 'react-router-dom';
-import * as auth from '../auth.js';
-import * as data from '../data.js';
-import './styles/Register.css';
+import { Link, useHistory, withRouter } from 'react-router-dom';
+import * as auth from '../Utils/auth';
+//import './styles/Register.css';
 
 function Register(){
   const [username, setUsername] = useState('');
@@ -19,7 +18,7 @@ function Register(){
     setConfirmPassword('');
     setMessage('');
   }
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (password !== confirmPassword){
       return setMessage('something went wrong')
@@ -71,11 +70,11 @@ function Register(){
         <label htmlFor="confirmPassword">
           Confirm password:
         </label>
-        <input id="confirmPassword" name="confirmPassword" type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value} />
+        <input id="confirmPassword" name="confirmPassword" type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
         <label htmlFor="calGoal">
           Daily calorie goal:
         </label>
-        <select name="calGoal" value={calGoal} onChange={handleChangeCals}>
+        {/* <select name="calGoal" value={calGoal} onChange={handleChangeCals}>
           {
             data.calData.map((item, i) => {
               return (
@@ -83,9 +82,9 @@ function Register(){
               )
             })
           }
-        </select>
+        </select> */}
         <div className="register__button-container">
-          <button type="submit" onSubmit={this.handleSubmit} className="register__link">Sign up</button>
+          <button type="submit" onSubmit={handleSubmit} className="register__link">Sign up</button>
         </div>
       </form>
   

@@ -11,6 +11,20 @@ import ImagePopup from './ImagePopup';
 import {currentUserContext} from '../contexts/CurrentUserContext'
 import api from '../Utils/Api'
 import Card from './Card'
+import Register from './Register' 
+import Login from './Login'
+import ProtectedRoute from './ProtectedRoute'
+import InfoTooltip from './InfoTooltip'
+import * as auth from "../Utils/auth";
+
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useHistory
+} from "react-router-dom";
 
 function App() {
   const [cards, setCards] = React.useState([])
@@ -23,6 +37,15 @@ function App() {
   const [imageLink, setImageLink] = React.useState("")
   const [imageTitle, setImageTitle] = React.useState("")
   const [currentUser, setCurrentUser] = React.useState({})
+  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [userData, setUserData] = React.useState(false);
+  const [email, setEmail] = useState('')
+  const [isInfoToolTipOpen, setIsInfoToolTipOpen] = React.useState(false);
+	const [isSuccessful, setIsSuccessful] = React.useState(false);
+
+
+  const history = useHistory();
+
 
   React.useEffect(() => {
     api.getUserInfo()
@@ -127,37 +150,106 @@ function App() {
     setSelectedCard(null)
     setEnlargeImage(false)
   }
+useEffect(() => {
+  let jwt = localStorage.getItem('jwt');
+
+  if (jwt){
+    // we're checking the user's token
+    auth.checkToken(jwt)
+    .then((res) => {
+      let userData = {
+        username : res.username,
+        emil : res.email
+      }
+      // we're finding the selected user's total calories
+      // from the list of possible goals
+      setLoggedIn(true)
+      setUserData(userData)
+      history.push("/diary");
+    });
+   }
+ }, [loggedIn]);
+  
+ function handleRegistration(email, password) {
+  console.log(email, password);
+  auth
+    .register(email, password)
+    .then((res) => {
+      console.log(res);
+      if (res.statusCode === 400 || !res) {
+        setIsSuccessful(false);
+        setIsInfoToolTipOpen(true);
+      } else {
+        setIsSuccessful(true);
+        setIsInfoToolTipOpen(true);
+        setEmail(email);
+        history.push("/signin");
+      }
+    })
+    .catch((err) => console.log(err));
+}
+
+ const onSignOut = () =>{
+   localStorage.removeItem('jwt');
+   setLoggedIn(false);
+   history.push('/login');
+ }
+  function handleLogin (calGoal){
+    this.setState({
+      loggedIn: true    
+    })
+  }
+  function handleLogout (){
+    // finish the log out handler
+      this.setState({
+      loggedIn: false
+    })
+  }
   return (
       <div className="page">
-        <currentUserContext.Provider value={currentUser}>
-          <Header />
-          <Main
-              cards={cards}
-              editProfileModalOpen={editProfileModalOpen}
-              editAvatarModalOpen={editAvatarModalOpen}
-              addImageModalOpen= {addImageModalOpen}
-              deleteModalOpen ={deleteModalOpen}
-              selectedCard = {selectedCard}
-              handleEditProfileClick = {handleEditProfileClick}
-              handleEditAvatarClick = {handleEditAvatarClick}
-              handleAddPlaceClick={handleAddPlaceClick}
-              handleDeleteClick = {(card) => {
-                console.log(card)
-                handleDeleteClick(card)}}
-              handleCardClick = {handleCardClick}
-              handleCardLike = {(card) => {
-                handleCardLike(card)
-              }}
-          />
-          <EditProfileModal isOpen ={editProfileModalOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
-          <EditAvatarModal isOpen={editAvatarModalOpen} onClose={closeAllPopups} onUpdateAvatar = {handleUpdateAvatar}
- />
-          <AddImageModal isOpen={addImageModalOpen} onClose={closeAllPopups} handleAddPlaceSubmit={handleAddPlaceSubmit} />
-          <DeleteModal isOpen={deleteModalOpen} onClose={closeAllPopups} />
-          <ImagePopup isOpen={enlargeImage} onClose={closeAllPopups} link={imageLink} title={imageTitle} />
-        </currentUserContext.Provider>
+        <Router>
+          <Switch>
+          <currentUserContext.Provider value={currentUser}>
+
+					<Route path="/signin">
+						<Header link={"/signup"} text={"Register"} setEmail={setEmail} />
+						<Login handleLogin={handleLogin} />
+					</Route>
+					<Route path="/signup">
+						<Header link={"/signin"} text={"Login"} setEmail={setEmail} />
+						<Register handleRegistration={handleRegistration} />
+					</Route>
+          <Route path="/">
+              <Header />
+              <Main
+                  cards={cards}
+                  editProfileModalOpen={editProfileModalOpen}
+                  editAvatarModalOpen={editAvatarModalOpen}
+                  addImageModalOpen= {addImageModalOpen}
+                  deleteModalOpen ={deleteModalOpen}
+                  selectedCard = {selectedCard}
+                  handleEditProfileClick = {handleEditProfileClick}
+                  handleEditAvatarClick = {handleEditAvatarClick}
+                  handleAddPlaceClick={handleAddPlaceClick}
+                  handleDeleteClick = {(card) => {
+                    console.log(card)
+                    handleDeleteClick(card)}}
+                  handleCardClick = {handleCardClick}
+                  handleCardLike = {(card) => {
+                    handleCardLike(card)
+                  }}
+              />
+              <EditProfileModal isOpen ={editProfileModalOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
+              <EditAvatarModal isOpen={editAvatarModalOpen} onClose={closeAllPopups} onUpdateAvatar = {handleUpdateAvatar}
+    />
+              <AddImageModal isOpen={addImageModalOpen} onClose={closeAllPopups} handleAddPlaceSubmit={handleAddPlaceSubmit} />
+              <DeleteModal isOpen={deleteModalOpen} onClose={closeAllPopups} />
+              <ImagePopup isOpen={enlargeImage} onClose={closeAllPopups} link={imageLink} title={imageTitle} />
+              </Route>
+            </currentUserContext.Provider>
+          </Switch>
+        </Router>
       </div>  
   );
 }
-
 export default App;

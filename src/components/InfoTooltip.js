@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './styles/Tips.css';
+//import './styles/Tips.css';
 
 function Tips() {
   useEffect(() => {
