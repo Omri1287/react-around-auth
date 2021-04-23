@@ -12,7 +12,11 @@ function Main(props) {
 //   const [userAvatar, setUserAvatar] = React.useState("")
   const currentUser = React.useContext(currentUserContext);
   //const [cards, setCards] = React.useState([])
-
+  //check if the url is the correct one
+//   const searchUrl = window.location.href
+//   if(searchUrl.endsWith("/signin") || searchUrl.endsWith("/signup")){
+//       return null;
+//   }
 //   useEffect(() => {
 //     api.getUserInfo()
 //     .then((res) => {

@@ -23,7 +23,7 @@ function Login(props){
 
   function handleSubmit(e) {
       e.preventDefault();
-      props.handleRegistration(password,email);
+      props.handleLogin(password,email);
       resetForm()
   }
 
@@ -69,7 +69,7 @@ export default Login;
 //     if (!this.state.username || !this.state.password){
 //       return;
 //     }
-//     auth.authorize(this.state.username, this.state.password)
+//     auth.authorize(this.state.email, this.state.password)
 //     .then((data) => {
 //       if (data.jwt){
 //         this.setState({email: '', password: ''} ,() => {

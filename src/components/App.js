@@ -16,6 +16,8 @@ import Login from './Login'
 import ProtectedRoute from './ProtectedRoute'
 import InfoTooltip from './InfoTooltip'
 import * as auth from "../Utils/auth";
+import PageNotFound from './PageNotFound'
+
 
 
 import {
@@ -46,7 +48,9 @@ function App() {
 
   const history = useHistory();
 
-
+	React.useEffect(() => {
+		handleCheckToken();
+	},);
   React.useEffect(() => {
     api.getUserInfo()
     .then((res) => {
@@ -165,7 +169,6 @@ useEffect(() => {
       // from the list of possible goals
       setLoggedIn(true)
       setUserData(userData)
-      history.push("/diary");
     });
    }
  }, [loggedIn]);
@@ -189,39 +192,121 @@ useEffect(() => {
     .catch((err) => console.log(err));
 }
 
- const onSignOut = () =>{
-   localStorage.removeItem('jwt');
-   setLoggedIn(false);
-   history.push('/login');
- }
-  function handleLogin (calGoal){
-    this.setState({
-      loggedIn: true    
+function handleLogin(email, password) {
+  auth
+    .authorize(email, password)
+    .then((res) => {
+      if (!res) {
+        console.log(!res);
+        setIsSuccessful(false);
+        setIsInfoToolTipOpen(true);
+      }
+
+      handleCheckToken();
+      setEmail(email);
+      history.push("/");
     })
-  }
-  function handleLogout (){
-    // finish the log out handler
-      this.setState({
-      loggedIn: false
-    })
-  }
+    .catch((err) => {
+      console.log(err);
+      setIsSuccessful(false);
+      setIsInfoToolTipOpen(true);
+    });
+}
+//  const onSignOut = () =>{
+//    localStorage.removeItem('jwt');
+//    setLoggedIn(false);
+//    history.push('/login');
+//  }
+  // function handleLogin (){
+  //     setLoggedIn(true)
+  // }
+  // function handleLogout (){
+  //   // finish the log out handler
+  //   setLoggedIn(false)
+  // }
+  function handleCheckToken() {
+		const jwt = localStorage.getItem("jwt");
+		if (jwt) {
+			auth
+				.checkToken(jwt)
+				.then((res) => {
+					if (res.err) {
+						console.log(res.err);
+					}
+					const usersEmail = res.data.email;
+					setEmail(usersEmail);
+					setLoggedIn(true);
+					setIsSuccessful(true);
+					history.push("/");
+				})
+				.catch((err) => console.log(err));
+		}
+	}
+  function handleLogin(email, password) {
+		auth
+			.authorize(email, password)
+			.then((res) => {
+				if (!res) {
+					console.log(!res);
+					setIsSuccessful(false);
+					setIsInfoToolTipOpen(true);
+				}
+
+				handleCheckToken();
+				setEmail(email);
+				history.push("/");
+			})
+			.catch((err) => {
+				console.log(err);
+				setIsSuccessful(false);
+				setIsInfoToolTipOpen(true);
+			});
+	}
+	function handleLogout() {
+		localStorage.removeItem("jwt");
+		setLoggedIn(false);
+		setEmail("");
+		history.push("/signin");
+	}
   return (
       <div className="page">
         <Router>
           <Switch>
           <currentUserContext.Provider value={currentUser}>
-
-					<Route path="/signin">
-						<Header link={"/signup"} text={"Register"} setEmail={setEmail} />
+					<Route path="/signin" exact>
+          <Header link={"/signup"} text={"Register"} setEmail={setEmail} />
 						<Login handleLogin={handleLogin} />
 					</Route>
-					<Route path="/signup">
-						<Header link={"/signin"} text={"Login"} setEmail={setEmail} />
+      
+					<Route path="/signup" exact>
+          <Header link={"/signin"} text={"Login"} setEmail={setEmail} />
 						<Register handleRegistration={handleRegistration} />
 					</Route>
-          <Route path="/">
-              <Header />
-              <Main
+          <ProtectedRoute
+            path="/"
+            component={Main}
+            loggedIn={loggedIn}
+            handleLogout={handleLogout}
+            email={email}
+            cards={cards}
+            editProfileModalOpen={editProfileModalOpen}
+            editAvatarModalOpen={editAvatarModalOpen}
+            addImageModalOpen= {addImageModalOpen}
+            deleteModalOpen ={deleteModalOpen}
+            selectedCard = {selectedCard}
+            handleEditProfileClick = {handleEditProfileClick}
+            handleEditAvatarClick = {handleEditAvatarClick}
+            handleAddPlaceClick={handleAddPlaceClick}
+            handleDeleteClick = {(card) => {
+              console.log(card)
+              handleDeleteClick(card)}}
+            handleCardClick = {handleCardClick}
+            handleCardLike = {(card) => {
+              handleCardLike(card)
+            }}
+              />
+          <Route path="/" exact>
+              {/* <Main
                   cards={cards}
                   editProfileModalOpen={editProfileModalOpen}
                   editAvatarModalOpen={editAvatarModalOpen}
@@ -238,7 +323,8 @@ useEffect(() => {
                   handleCardLike = {(card) => {
                     handleCardLike(card)
                   }}
-              />
+              /> */}
+
               <EditProfileModal isOpen ={editProfileModalOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
               <EditAvatarModal isOpen={editAvatarModalOpen} onClose={closeAllPopups} onUpdateAvatar = {handleUpdateAvatar}
     />
@@ -246,6 +332,7 @@ useEffect(() => {
               <DeleteModal isOpen={deleteModalOpen} onClose={closeAllPopups} />
               <ImagePopup isOpen={enlargeImage} onClose={closeAllPopups} link={imageLink} title={imageTitle} />
               </Route>
+              <Route path='**' component = {PageNotFound}/>
             </currentUserContext.Provider>
           </Switch>
         </Router>
