@@ -3,6 +3,8 @@
 @import url(./__title/login__title.css);
 @import url(./__singup/login__signup.css);
 @import url(./__submit/login__submit.css);
+@import url(./__subtext/login__subtext.css);
+
 
 
 .login {
