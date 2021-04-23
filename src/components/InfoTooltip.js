@@ -3,12 +3,13 @@ import Check from '../images/Check.svg';
 import Xerror from '../images/Xerror.svg';
 
 function InfoToolTip(props) {
+	const { isOpen, toggle } = props
+
 	return (
-		<div
-			className={`modal modal_type_${props.name} ${
-				props.isOpen ? "modal_display" : ""
-			}`}
-		>
+		<div 
+			className={`toolTip ${isOpen && 'toolTip_visible'}`}
+			onClick={e => e.target === e.currentTarget && toggle()}
+			>
 			<div className="modal__container">
 				<div className="modal__content">
                 <img className="modal__icon" src={props.valid ? Check : Xerror} alt={props.valid ? 'Check Mark' : 'Error'} />

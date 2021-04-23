@@ -173,25 +173,40 @@ useEffect(() => {
    }
  }, [loggedIn]);
   
- function handleRegistration(email, password) {
-  console.log(email, password);
-  auth
-    .register(email, password)
-    .then((res) => {
-      console.log(res);
-      if (res.statusCode === 400 || !res) {
-        setIsSuccessful(false);
-        setIsInfoToolTipOpen(true);
-      } else {
-        setIsSuccessful(true);
-        setIsInfoToolTipOpen(true);
-        setEmail(email);
-        history.push("/signin");
-      }
-    })
-    .catch((err) => console.log(err));
+//  function handleRegistration(email, password) {
+//   console.log(email, password);
+//   auth
+//     .register(email, password)
+//     .then((res) => {
+//       console.log(res);
+//       if (res.statusCode === 400 || !res) {
+//         setIsSuccessful(false);
+//         setIsInfoToolTipOpen(true);
+//       } else {
+//         setIsSuccessful(true);
+//         setIsInfoToolTipOpen(true);
+//         setEmail(email);
+//         history.push("/signin");
+//       }
+//     })
+//     .catch((err) => console.log(err));
+// }
+function handleRegistration(password,email) {
+  return auth.register(password,email)
+      .then(res => {
+          if(res.data)  {
+              setLoggedIn(true)
+              history.push('/signin')
+              handleLogin(password,email)
+              setIsSuccessful(true)
+              setIsInfoToolTipOpen(true)
+              return
+          };
+          setIsSuccessful(false)
+          setIsInfoToolTipOpen(false)
+      })
+      .catch(err => console.log(err))
 }
-
 function handleLogin(email, password) {
   auth
     .authorize(email, password)
