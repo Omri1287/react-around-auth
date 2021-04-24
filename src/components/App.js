@@ -330,7 +330,7 @@ function handleLogin(email, password) {
               <InfoToolTip
               isOpen={isInfoToolTipOpen}
               onClose={closeAllPopups}
-              valid={isSuccessful}
+              valid={isSuccessful}//
             />
               </Route>
             </currentUserContext.Provider>
