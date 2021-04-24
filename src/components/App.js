@@ -327,6 +327,11 @@ function handleLogin(email, password) {
               <AddImageModal isOpen={addImageModalOpen} onClose={closeAllPopups} handleAddPlaceSubmit={handleAddPlaceSubmit} />
               <DeleteModal isOpen={deleteModalOpen} onClose={closeAllPopups} />
               <ImagePopup isOpen={enlargeImage} onClose={closeAllPopups} link={imageLink} title={imageTitle} />
+              <InfoToolTip
+              isOpen={isInfoToolTipOpen}
+              onClose={closeAllPopups}
+              valid={isSuccessful}
+            />
               </Route>
             </currentUserContext.Provider>
           </Switch>
