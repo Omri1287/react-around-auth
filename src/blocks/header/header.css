@@ -9,7 +9,8 @@
     padding-top: 45px;
     max-width: 882px;
     margin: 0 auto;
-    border-bottom: 1px solid rgba(84, 84, 84, 0.7)
+    border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+    justify-content: space-between;
 }
 
 @media screen and (max-width: 410px){
@@ -21,7 +22,6 @@
         padding-bottom: 0;
         margin-bottom: 0;
         padding-top: 28px;
-        
 
     }
 }

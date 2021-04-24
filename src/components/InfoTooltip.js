@@ -7,7 +7,7 @@ function InfoToolTip(props) {
 
 	return (
 		<div 
-			className={`toolTip ${isOpen && 'toolTip_visible'}`}
+			className={`modal__toolTip ${isOpen && 'modal__toolTip_visible'}`}
 			onClick={e => e.target === e.currentTarget && toggle()}
 			>
 			<div className="modal__container">

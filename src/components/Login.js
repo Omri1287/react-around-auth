@@ -31,7 +31,7 @@ function Login(props){
   return(
     <div className="login">
       <div>
-      <Link to='/signup' className='login__signup'>Sign up</Link>
+      {/* <Link to='/signup' className='login__signup'></Link> */}
       </div>
       <form onSubmit={handleSubmit} className="login__form">
       <p className="login__title">Log in</p>
