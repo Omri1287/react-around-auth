@@ -14,7 +14,7 @@ import Card from './Card'
 import Register from './Register' 
 import Login from './Login'
 import ProtectedRoute from './ProtectedRoute'
-import InfoTooltip from './InfoTooltip'
+import InfoToolTip from './InfoToolTip'
 import * as auth from "../Utils/auth";
 import PageNotFound from './PageNotFound'
 
@@ -321,25 +321,6 @@ function handleLogin(email, password) {
             }}
               />
           <Route path="/" exact>
-              {/* <Main
-                  cards={cards}
-                  editProfileModalOpen={editProfileModalOpen}
-                  editAvatarModalOpen={editAvatarModalOpen}
-                  addImageModalOpen= {addImageModalOpen}
-                  deleteModalOpen ={deleteModalOpen}
-                  selectedCard = {selectedCard}
-                  handleEditProfileClick = {handleEditProfileClick}
-                  handleEditAvatarClick = {handleEditAvatarClick}
-                  handleAddPlaceClick={handleAddPlaceClick}
-                  handleDeleteClick = {(card) => {
-                    console.log(card)
-                    handleDeleteClick(card)}}
-                  handleCardClick = {handleCardClick}
-                  handleCardLike = {(card) => {
-                    handleCardLike(card)
-                  }}
-              /> */}
-
               <EditProfileModal isOpen ={editProfileModalOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
               <EditAvatarModal isOpen={editAvatarModalOpen} onClose={closeAllPopups} onUpdateAvatar = {handleUpdateAvatar}
     />
@@ -347,7 +328,6 @@ function handleLogin(email, password) {
               <DeleteModal isOpen={deleteModalOpen} onClose={closeAllPopups} />
               <ImagePopup isOpen={enlargeImage} onClose={closeAllPopups} link={imageLink} title={imageTitle} />
               </Route>
-              <Route path='**' component = {PageNotFound}/>
             </currentUserContext.Provider>
           </Switch>
         </Router>
