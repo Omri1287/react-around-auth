@@ -192,13 +192,13 @@ useEffect(() => {
 //     })
 //     .catch((err) => console.log(err));
 // }
-function handleRegistration(password,email) {
-  return auth.register(password,email)
+function handleRegistration(email, password) {
+  return auth.register(email, password)
       .then(res => {
-          if(res.data)  {
+          if(res)  {
               setLoggedIn(true)
               history.push('/signin')
-              handleLogin(password,email)
+              handleLogin(email, password)
               setIsSuccessful(true)
               setIsInfoToolTipOpen(true)
               return
@@ -252,7 +252,8 @@ function handleLogin(email, password) {
 					const usersEmail = res.data.email;
 					setEmail(usersEmail);
 					setLoggedIn(true);
-					setIsSuccessful(true);
+          setIsSuccessful(true);
+          
 					history.push("/");
 				})
 				.catch((err) => console.log(err));
