@@ -175,24 +175,6 @@ useEffect(() => {
    }
  }, [loggedIn]);
   
-//  function handleRegistration(email, password) {
-//   console.log(email, password);
-//   auth
-//     .register(email, password)
-//     .then((res) => {
-//       console.log(res);
-//       if (res.statusCode === 400 || !res) {
-//         setIsSuccessful(false);
-//         setIsInfoToolTipOpen(true);
-//       } else {
-//         setIsSuccessful(true);
-//         setIsInfoToolTipOpen(true);
-//         setEmail(email);
-//         history.push("/signin");
-//       }
-//     })
-//     .catch((err) => console.log(err));
-// }
 function handleRegistration(email, password) {
   return auth.register(email, password)
       .then(res => {
@@ -217,6 +199,7 @@ function handleLogin(email, password) {
         console.log(!res);
         setIsSuccessful(false);
         setIsInfoToolTipOpen(true);
+        return
       }
 
       handleCheckToken();
@@ -230,22 +213,6 @@ function handleLogin(email, password) {
       setIsInfoToolTipOpen(true);
     });
 }
-//  const onSignOut = () =>{
-//    localStorage.removeItem('jwt');
-//    setLoggedIn(false);
-//    history.push('/login');
-//  }
-  // function handleLogin (){
-  //     setLoggedIn(true)
-  // }
-  // function handleLogout (){
-  //   // finish the log out handler
-  //   setLoggedIn(false)
-  // }
-
-
-  
-
 
   function handleCheckToken() {
 		const jwt = localStorage.getItem("jwt");
@@ -266,26 +233,7 @@ function handleLogin(email, password) {
 				.catch((err) => console.log(err));
 		}
 	}
-  // function handleLogin(email, password) {
-	// 	auth
-	// 		.authorize(email, password)
-	// 		.then((res) => {
-	// 			if (!res) {
-	// 				console.log(!res);
-	// 				setIsSuccessful(false);
-	// 				setIsInfoToolTipOpen(true);
-	// 			}
 
-	// 			handleCheckToken();
-	// 			setEmail(email);
-	// 			history.push("/");
-	// 		})
-	// 		.catch((err) => {
-	// 			console.log(err);
-	// 			setIsSuccessful(false);
-	// 			setIsInfoToolTipOpen(true);
-	// 		});
-	// }
 	function handleLogout() {
 		localStorage.removeItem("jwt");
 		setLoggedIn(false);
