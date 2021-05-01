@@ -164,7 +164,7 @@ useEffect(() => {
     .then((res) => {
       let userData = {
         username : res.username,
-        emil : res.email
+        email : res.email
       }
       // we're finding the selected user's total calories
       // from the list of possible goals
@@ -198,7 +198,7 @@ function handleRegistration(email, password) {
           if(res)  {
               setLoggedIn(true)
               history.push('/signin')
-              handleLogin(email, password)
+              //handleLogin(email, password)
               setIsSuccessful(true)
               setIsInfoToolTipOpen(true)
               return
@@ -259,26 +259,26 @@ function handleLogin(email, password) {
 				.catch((err) => console.log(err));
 		}
 	}
-  function handleLogin(email, password) {
-		auth
-			.authorize(email, password)
-			.then((res) => {
-				if (!res) {
-					console.log(!res);
-					setIsSuccessful(false);
-					setIsInfoToolTipOpen(true);
-				}
+  // function handleLogin(email, password) {
+	// 	auth
+	// 		.authorize(email, password)
+	// 		.then((res) => {
+	// 			if (!res) {
+	// 				console.log(!res);
+	// 				setIsSuccessful(false);
+	// 				setIsInfoToolTipOpen(true);
+	// 			}
 
-				handleCheckToken();
-				setEmail(email);
-				history.push("/");
-			})
-			.catch((err) => {
-				console.log(err);
-				setIsSuccessful(false);
-				setIsInfoToolTipOpen(true);
-			});
-	}
+	// 			handleCheckToken();
+	// 			setEmail(email);
+	// 			history.push("/");
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(err);
+	// 			setIsSuccessful(false);
+	// 			setIsInfoToolTipOpen(true);
+	// 		});
+	// }
 	function handleLogout() {
 		localStorage.removeItem("jwt");
 		setLoggedIn(false);
