@@ -1,4 +1,4 @@
-.login__subtext{
+.login__subtext {
     color: rgba(255, 255, 255, 1);
     text-decoration: none;
     font-size: 14px;
@@ -6,12 +6,11 @@
     border: none;
     font-size: 16px;
     line-height: 17px;
-    transition: opacity .3s;
+    transition: opacity 0.3s;
     text-decoration: none;
-
 }
 
-.login__subtext:hover{
-    opacity: .6;
-    cursor: url('../../../images/mouse.svg'), auto;
+.login__subtext:hover {
+    opacity: 0.6;
+    cursor: url("../../../images/mouse.svg"), auto;
 }

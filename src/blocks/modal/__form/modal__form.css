@@ -1,5 +1,4 @@
-
-.modal__form{
+.modal__form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -14,16 +13,14 @@
     background: white;
 }
 
-@media screen and (max-width: 700px){
-    .modal__form{
+@media screen and (max-width: 700px) {
+    .modal__form {
         max-width: 282px;
         height: 361px;
-
     }
 }
-@media screen and (max-width: 400px){
-    .modal__form{
+@media screen and (max-width: 400px) {
+    .modal__form {
         max-width: 250px;
-
     }
 }

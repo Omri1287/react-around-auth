@@ -1,4 +1,4 @@
-.modal__close{
+.modal__close {
     position: absolute;
     width: 50px;
     height: 50px;
@@ -9,5 +9,4 @@
     background-position: center;
     background-color: #000000;
     border: none;
-
 }

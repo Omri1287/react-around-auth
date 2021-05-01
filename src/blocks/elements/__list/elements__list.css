@@ -1,4 +1,4 @@
-.elements__list{
+.elements__list {
     width: 100%;
     margin: 0;
     padding: 0;
@@ -10,16 +10,16 @@
     grid-gap: 18px 21px;
     margin-top: 51px;
 }
-@media screen and (max-width: 780px){
-    .elements__list{
+@media screen and (max-width: 780px) {
+    .elements__list {
         grid-template-columns: 1fr 1fr;
         max-width: 100%;
         margin: 51px auto 0;
     }
 }
 
-@media screen and (max-width: 400px){
-    .elements__list{
+@media screen and (max-width: 400px) {
+    .elements__list {
         grid-template-columns: 1fr;
         grid-gap: 20px;
         margin-top: 53px;

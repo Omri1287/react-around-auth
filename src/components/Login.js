@@ -1,50 +1,72 @@
-import React, {useState} from 'react';
-import { Link, withRouter, useHistory } from 'react-router-dom';
-import * as auth from '../Utils/auth';
+import React, { useState } from "react";
+import { Link, withRouter, useHistory } from "react-router-dom";
+import * as auth from "../Utils/auth";
 //import './styles/Login.css';
 
-function Login(props){
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('')
+function Login(props) {
+    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
 
+    const history = useHistory();
 
-  const history = useHistory();
+    const resetForm = () => {
+        setEmail("");
+        setPassword("");
+    };
+    function handleEmail(e) {
+        setEmail(e.target.value);
+    }
+    function handlePassword(e) {
+        setPassword(e.target.value);
+    }
 
-  const resetForm = () => {
-    setEmail('');
-    setPassword('');
-  }
-  function handleEmail(e) {
-        setEmail(e.target.value)
-  }
-  function handlePassword(e) {
-      setPassword(e.target.value)
-  }
+    function handleSubmit(e) {
+        e.preventDefault();
+        props.handleLogin(email, password);
+        resetForm();
+    }
 
-  function handleSubmit(e) {
-      e.preventDefault();
-      props.handleLogin(email,password);
-      resetForm()
-  }
-
-
-  return(
-    <div className="login">
-      <div>
-      {/* <Link to='/signup' className='login__signup'></Link> */}
-      </div>
-      <form onSubmit={handleSubmit} className="login__form">
-      <p className="login__title">Log in</p>
-        <input className="login__form" required id="email" name="email" type="email" value={email} placeholder='Email'  onChange={handleEmail}/>
-        <input className="login__form" required id="password" name="password" type="password" value={password} placeholder='Password' onChange={handlePassword} />
-        <button type="submit" onSubmit={handleSubmit} className="login__submit">Log in</button>
-        <Link to="signup" className="login__signup">Not a member yet? Sign up here!</Link>
-      </form>
-    </div>
-  )
+    return (
+        <div className="login">
+            <div>
+                {/* <Link to='/signup' className='login__signup'></Link> */}
+            </div>
+            <form onSubmit={handleSubmit} className="login__form">
+                <p className="login__title">Log in</p>
+                <input
+                    className="login__form"
+                    required
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={email}
+                    placeholder="Email"
+                    onChange={handleEmail}
+                />
+                <input
+                    className="login__form"
+                    required
+                    id="password"
+                    name="password"
+                    type="password"
+                    value={password}
+                    placeholder="Password"
+                    onChange={handlePassword}
+                />
+                <button
+                    type="submit"
+                    onSubmit={handleSubmit}
+                    className="login__submit"
+                >
+                    Log in
+                </button>
+                <Link to="signup" className="login__signup">
+                    Not a member yet? Sign up here!
+                </Link>
+            </form>
+        </div>
+    );
 }
-
-
 
 export default Login;
 // class Login extends React.Component {

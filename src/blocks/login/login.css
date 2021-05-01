@@ -5,8 +5,6 @@
 @import url(./__submit/login__submit.css);
 @import url(./__subtext/login__subtext.css);
 
-
-
 .login {
     display: flex;
     flex-direction: column;

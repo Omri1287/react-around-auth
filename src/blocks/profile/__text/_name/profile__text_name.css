@@ -1,4 +1,4 @@
-.profile__text_name{
+.profile__text_name {
     font-weight: 500;
     font-size: 42px;
     line-height: 56px;
@@ -8,18 +8,16 @@
     height: 43px;
 }
 
-@media screen and (max-width: 650px){
-    .profile__text_name{
+@media screen and (max-width: 650px) {
+    .profile__text_name {
         font-weight: 500;
         font-size: 22px;
         line-height: 56px;
     }
 }
 
-
-
-@media screen and (max-width: 500px){
-    .profile__text_name{
+@media screen and (max-width: 500px) {
+    .profile__text_name {
         text-align: center;
     }
 }

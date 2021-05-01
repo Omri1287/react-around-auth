@@ -1,4 +1,4 @@
-.login__signup{
+.login__signup {
     all: unset;
     font-weight: normal;
     font-size: 18px;
@@ -9,5 +9,5 @@
     margin-top: 6px;
 }
 .login__signup:hover {
-    opacity: .6;
+    opacity: 0.6;
 }

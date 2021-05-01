@@ -1,4 +1,4 @@
-.modal__input{
+.modal__input {
     width: 358px;
     height: 27.26px;
     font-weight: normal;
@@ -9,11 +9,9 @@
     border-bottom: 1px solid #000000;
 }
 
-
-@media screen and (max-width: 700px){
-    .modal__input{
+@media screen and (max-width: 700px) {
+    .modal__input {
         max-width: 100%;
         max-height: 100%;
-
     }
 }

@@ -3,9 +3,9 @@
 @import url(./__link/header__link.css);
 @import url(./__email/header__email.css);
 
-.header{
-    display: flex;    
-    padding-bottom: 41px;  
+.header {
+    display: flex;
+    padding-bottom: 41px;
     padding-top: 45px;
     max-width: 882px;
     margin: 0 auto;
@@ -13,8 +13,8 @@
     justify-content: space-between;
 }
 
-@media screen and (max-width: 410px){
-    .header{
+@media screen and (max-width: 410px) {
+    .header {
         max-width: 320px;
         max-height: 56px;
         margin-top: 0;
@@ -22,6 +22,5 @@
         padding-bottom: 0;
         margin-bottom: 0;
         padding-top: 28px;
-
     }
 }

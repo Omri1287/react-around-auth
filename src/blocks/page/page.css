@@ -1,4 +1,4 @@
-.page{
+.page {
     max-width: 100%;
     margin: auto;
     background-color: #000000;
@@ -6,16 +6,15 @@
     font-family: "Inter", Arial, sans-serif;
 }
 
-@media screen and (max-width: 925px){
-    .page{
+@media screen and (max-width: 925px) {
+    .page {
         padding: 0 19px;
         display: block;
-
     }
 }
 
-@media (max-width: 300px){
-    .page{
+@media (max-width: 300px) {
+    .page {
         display: block;
         width: 100%;
     }
