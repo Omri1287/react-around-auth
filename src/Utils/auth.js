@@ -21,7 +21,8 @@ export const authorize = (email, password) => {
         body: JSON.stringify({ email, password }),
     })
         .then((res) => {
-            return res.json();
+            const result = res.json();
+            return result
         })
         .then((data) => {
             if (data.token) {
@@ -46,6 +47,8 @@ export const checkToken = (token) => {
         .then((res) => {
             return res.json();
         })
-        .then((data) => data)
+        .then((data) => {
+            return data
+        })
         .catch((err) => console.log(err));
 };

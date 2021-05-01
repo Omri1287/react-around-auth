@@ -50,7 +50,7 @@ function App() {
 
     React.useEffect(() => {
         handleCheckToken();
-    });
+    }, []);
     React.useEffect(() => {
         api.getUserInfo()
             .then((res) => {
@@ -192,27 +192,49 @@ function App() {
             })
             .catch((err) => console.log(err));
     }
+    
+    // function handleLogin(email, password) {
+    //     auth.authorize(email, password)
+    //         .then((res) => {
+    //             if (!res) {
+    //                 console.log(!res);
+    //                 setIsSuccessful(false);
+    //                 setIsInfoToolTipOpen(true);
+    //                 return;
+    //             }
+
+    //             handleCheckToken();
+    //             setLoggedIn(true)
+    //             //setEmail(email);
+    //             history.push("/");
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //             setIsSuccessful(false);
+    //             setIsInfoToolTipOpen(true);
+    //         });
+    // }
     function handleLogin(email, password) {
-        auth.authorize(email, password)
-            .then((res) => {
-                if (!res) {
-                    console.log(!res);
-                    setIsSuccessful(false);
-                    setIsInfoToolTipOpen(true);
-                    return;
-                }
-
-                handleCheckToken();
-                //setEmail(email);
-                history.push("/");
-            })
-            .catch((err) => {
-                console.log(err);
-                setIsSuccessful(false);
-                setIsInfoToolTipOpen(true);
-            });
+      auth
+        .authorize(email, password)
+        .then((res) => {
+          if (!res) {
+            debugger;
+            console.log(!res);
+            setIsSuccessful(false);
+            setIsInfoToolTipOpen(true);
+          }
+          // handleCheckToken();
+          setLoggedIn(true)
+          setEmail(email);
+          history.push("/");
+        })
+        .catch((err) => {
+          console.log(err);
+          setIsSuccessful(false);
+          setIsInfoToolTipOpen(true);
+        });
     }
-
     function handleCheckToken() {
         const jwt = localStorage.getItem("jwt");
         if (jwt) {
@@ -226,7 +248,6 @@ function App() {
                     setLoggedIn(true);
                     setIsSuccessful(true);
 
-                    history.push("/");
                 })
                 .catch((err) => console.log(err));
         }

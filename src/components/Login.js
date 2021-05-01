@@ -20,9 +20,9 @@ function Login(props) {
         setPassword(e.target.value);
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
-        props.handleLogin(email, password);
+        await props.handleLogin(email, password);
         resetForm();
     }
 

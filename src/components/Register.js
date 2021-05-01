@@ -12,6 +12,7 @@ function Register({ handleRegistration }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         handleRegistration(email, password);
+
         if (localStorage.getItem("jwt")) {
             history.push("/");
         }
