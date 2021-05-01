@@ -154,6 +154,7 @@ function App() {
     setEditAvatarModalOpen(false)
     setSelectedCard(null)
     setEnlargeImage(false)
+    setIsInfoToolTipOpen(false)
   }
 useEffect(() => {
   let jwt = localStorage.getItem('jwt');
@@ -219,8 +220,9 @@ function handleLogin(email, password) {
       }
 
       handleCheckToken();
-      setEmail(email);
+      //setEmail(email);
       history.push("/");
+      
     })
     .catch((err) => {
       console.log(err);
@@ -240,6 +242,11 @@ function handleLogin(email, password) {
   //   // finish the log out handler
   //   setLoggedIn(false)
   // }
+
+
+  
+
+
   function handleCheckToken() {
 		const jwt = localStorage.getItem("jwt");
 		if (jwt) {
@@ -287,19 +294,12 @@ function handleLogin(email, password) {
 	}
   return (
       <div className="page">
+<div className="page">
         <Router>
+        <currentUserContext.Provider value={currentUser}>
           <Switch>
-          <currentUserContext.Provider value={currentUser}>
-					<Route path="/signin" exact>
-          <Header link={"/signup"} text={"Register"} setEmail={setEmail} />
-						<Login handleLogin={handleLogin} />
-					</Route>
-      
-					<Route path="/signup" exact>
-          <Header link={"/signin"} text={"Login"} setEmail={setEmail} />
-						<Register handleRegistration={handleRegistration} />
-					</Route>
           <ProtectedRoute
+            exact 
             path="/"
             component={Main}
             loggedIn={loggedIn}
@@ -322,8 +322,16 @@ function handleLogin(email, password) {
               handleCardLike(card)
             }}
               />
-          <Route path="/" exact>
-              <EditProfileModal isOpen ={editProfileModalOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
+          <Route path="/signin" >
+            <Header link={"/signup"} text={"Register"} setEmail={setEmail} />
+						<Login handleLogin={handleLogin} />
+					</Route>
+					<Route path="/signup" >
+            <Header link={"/signin"} text={"Login"} setEmail={setEmail} />
+						<Register handleRegistration={handleRegistration} />
+					</Route>
+        </Switch>
+        <EditProfileModal isOpen ={editProfileModalOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
               <EditAvatarModal isOpen={editAvatarModalOpen} onClose={closeAllPopups} onUpdateAvatar = {handleUpdateAvatar}
     />
               <AddImageModal isOpen={addImageModalOpen} onClose={closeAllPopups} handleAddPlaceSubmit={handleAddPlaceSubmit} />
@@ -334,10 +342,9 @@ function handleLogin(email, password) {
               onClose={closeAllPopups}
               valid={isSuccessful}
             />
-              </Route>
-            </currentUserContext.Provider>
-          </Switch>
-        </Router>
+          </currentUserContext.Provider>
+      </Router>
+    </div>  
       </div>  
   );
 }
