@@ -14,7 +14,7 @@ function Register({ handleRegistration }) {
         handleRegistration(email, password);
 
         if (localStorage.getItem("jwt")) {
-            history.push("/");
+            history.push("/signin");
         }
     };
     return (

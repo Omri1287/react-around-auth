@@ -20,9 +20,12 @@ function Login(props) {
         setPassword(e.target.value);
     }
 
-    async function handleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault();
-        await props.handleLogin(email, password);
+        props.handleLogin(email, password);
+        if (localStorage.getItem('jwt')) {
+        history.push("/")   
+        }
         resetForm();
     }
 
