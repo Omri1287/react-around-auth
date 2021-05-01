@@ -219,10 +219,11 @@ function App() {
         .authorize(email, password)
         .then((res) => {
           if (!res) {
-            debugger;
             console.log(!res);
             setIsSuccessful(false);
             setIsInfoToolTipOpen(true);
+            history.push("/signin");
+            return
           }
           // handleCheckToken();
           setLoggedIn(true)

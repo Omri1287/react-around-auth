@@ -24,9 +24,13 @@ function Login(props) {
         e.preventDefault();
         props.handleLogin(email, password);
         if (localStorage.getItem('jwt')) {
-        history.push("/")   
+            history.push("/")   
         }
-        resetForm();
+        // else{
+        //     history.push("/signin");
+        //     resetForm();
+        // }
+
     }
 
     return (
