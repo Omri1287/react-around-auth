@@ -297,7 +297,8 @@ function App() {
                                     text={"Register"}
                                     setEmail={setEmail}
                                 />
-                                <Login handleLogin={handleLogin} />
+                                { loggedIn ? <Redirect to='/' /> : 
+                                <Login handleLogin={handleLogin} />}
                             </Route>
                             <Route path="/signup">
                                 <Header

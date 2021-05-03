@@ -46,7 +46,7 @@ function Main(props) {
             <Header
                 link={"/signin"}
                 text={"Log out"}
-                onClick={props.handleSignOut}
+                onClick={props.handleLogout}
                 userEmail={props.userEmail}
             />
             <section className="profile">

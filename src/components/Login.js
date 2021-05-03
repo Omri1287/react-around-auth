@@ -23,9 +23,13 @@ function Login(props) {
     function handleSubmit(e) {
         e.preventDefault();
         props.handleLogin(email, password);
-        if (localStorage.getItem('jwt')) {
-            history.push("/")   
-        }
+        // if (!localStorage.getItem('jwt')) {
+        //     resetForm();
+        //     history.push("/signin")   
+        // }
+        // else{
+        //     history.push("/")   
+        // }
         // else{
         //     history.push("/signin");
         //     resetForm();
@@ -36,7 +40,6 @@ function Login(props) {
     return (
         <div className="login">
             <div>
-                {/* <Link to='/signup' className='login__signup'></Link> */}
             </div>
             <form onSubmit={handleSubmit} className="login__form">
                 <p className="login__title">Log in</p>
