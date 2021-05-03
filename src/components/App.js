@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./Header";
 import Main from "./Main";
-import Footer from "./Footer";
 import EditProfileModal from "./EditProfileModal";
 import EditAvatarModal from "./EditAvatarModal";
 import DeleteModal from "./DeleteModal";
@@ -10,19 +9,16 @@ import AddImageModal from "./AddImageModal";
 import ImagePopup from "./ImagePopup";
 import { currentUserContext } from "../contexts/CurrentUserContext";
 import api from "../Utils/Api";
-import Card from "./Card";
 import Register from "./Register";
 import Login from "./Login";
 import ProtectedRoute from "./ProtectedRoute";
 import InfoToolTip from "./InfoToolTip";
 import * as auth from "../Utils/auth";
-import PageNotFound from "./PageNotFound";
 
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link,
     useHistory,
     Redirect,
 } from "react-router-dom";

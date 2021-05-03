@@ -1,6 +1,8 @@
-import React, { useState, useEffect, createContext } from "react";
-import jacques from "../images/jacques-cousteau.jpg";
-import api from "../Utils/Api";
+//import React, { useState, useEffect, createContext } from "react";
+import React from "react";
+
+//import jacques from "../images/jacques-cousteau.jpg";
+//import api from "../Utils/Api";
 import Card from "./Card";
 import { currentUserContext } from "../contexts/CurrentUserContext";
 import Header from "./Header";

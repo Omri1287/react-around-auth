@@ -1,6 +1,6 @@
-import React, { button, useEffect, useState } from "react";
-import { Link, useHistory, withRouter } from "react-router-dom";
-import * as auth from "../Utils/auth";
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+//import * as auth from "../Utils/auth";
 //import './styles/Register.css';
 
 function Register({ handleRegistration }) {
@@ -19,7 +19,7 @@ function Register({ handleRegistration }) {
     };
     return (
         <div className="login">
-            <form action="#" onSubmit={handleSubmit} className="form">
+            <form action="#" onSubmit={handleSubmit} className="login__form">
                 <h2 className="login__title">Sign up</h2>
                 <input
                     required
@@ -42,7 +42,7 @@ function Register({ handleRegistration }) {
                 <button type="submit" className="login__submit">
                     Sign up!
                 </button>
-                <Link to="/signin" className="login__subtext">
+                <Link to="/signin" className="login__signup">
                     Already a member? Log in here!
                 </Link>
             </form>

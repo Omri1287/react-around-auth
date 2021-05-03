@@ -1,18 +1,20 @@
 import React, { useState } from "react";
-import { Link, withRouter, useHistory } from "react-router-dom";
-import * as auth from "../Utils/auth";
+//import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+//import * as auth from "../Utils/auth";
 //import './styles/Login.css';
 
 function Login(props) {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
 
-    const history = useHistory();
+    //const history = useHistory();
 
-    const resetForm = () => {
-        setEmail("");
-        setPassword("");
-    };
+    // const resetForm = () => {
+    //     setEmail("");
+    //     setPassword("");
+    // };
     function handleEmail(e) {
         setEmail(e.target.value);
     }
