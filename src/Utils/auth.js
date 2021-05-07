@@ -8,7 +8,7 @@ export const register = (email, password) => {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
-    }).catch((err) => console.log(err));
+    })//.catch((err) => console.log(err));
 };
 
 export const authorize = (email, password) => {
@@ -32,7 +32,7 @@ export const authorize = (email, password) => {
                 return;
             }
         })
-        .catch((err) => console.log(err));
+        //.catch((err) => console.log(err));
 };
 
 export const checkToken = (token) => {
@@ -50,5 +50,5 @@ export const checkToken = (token) => {
         .then((data) => {
             return data
         })
-        .catch((err) => console.log(err));
+        //.catch((err) => console.log(err));
 };

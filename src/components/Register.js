@@ -6,16 +6,38 @@ import { Link, useHistory } from "react-router-dom";
 function Register({ handleRegistration }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState({})
+
 
     const history = useHistory();
 
+    function handleEmail(e) {
+        setEmail(e.target.value)
+        setError({...error, [e.target.name]: e.target.validationMessage})
+    }
+    function handlePassword(e) {
+        setPassword(e.target.value)
+        setError({...error, [e.target.name]: e.target.validationMessage})
+    }
+
+    function reset() {
+        setEmail('');
+        setPassword('')
+    }
+
+    function reset() {
+        setEmail('');
+        setPassword('')
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
         handleRegistration(email, password);
 
         if (localStorage.getItem("jwt")) {
             history.push("/signin");
+            
         }
+        //reset()
     };
     return (
         <div className="login">
@@ -29,6 +51,7 @@ function Register({ handleRegistration }) {
                     value={email}
                     placeholder="email"
                     onChange={(e) => setEmail(e.target.value)}
+                    //onChange={handleEmail}
                 />
                 <input
                     required
@@ -38,6 +61,7 @@ function Register({ handleRegistration }) {
                     value={password}
                     placeholder="password"
                     onChange={(e) => setPassword(e.target.value)}
+                    //onChange={handlePassword}
                 />
                 <button type="submit" className="login__submit">
                     Sign up!

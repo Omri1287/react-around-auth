@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
 import Header from "./Header";
 import Main from "./Main";
 import EditProfileModal from "./EditProfileModal";
@@ -12,7 +11,7 @@ import api from "../Utils/Api";
 import Register from "./Register";
 import Login from "./Login";
 import ProtectedRoute from "./ProtectedRoute";
-import InfoToolTip from "./InfoToolTip";
+import InfoTooltip from "./InfoTooltip";
 import * as auth from "../Utils/auth";
 
 import {
@@ -39,7 +38,7 @@ function App() {
     const [loggedIn, setLoggedIn] = React.useState(false);
     const [userData, setUserData] = React.useState(false);
     const [email, setEmail] = useState("");
-    const [isInfoToolTipOpen, setIsInfoToolTipOpen] = React.useState(false);
+    const [isInfoTooltipOpen,setIsInfoTooltipOpen] = React.useState(false);
     const [isSuccessful, setIsSuccessful] = React.useState(false);
 
     const history = useHistory();
@@ -151,10 +150,10 @@ function App() {
         setEditAvatarModalOpen(false);
         setSelectedCard(null);
         setEnlargeImage(false);
-        setIsInfoToolTipOpen(false);
+        setIsInfoTooltipOpen(false);
     }
     useEffect(() => {
-        let jwt = localStorage.getItem("jwt");
+        const jwt = localStorage.getItem("jwt");
 
         if (jwt) {
             // we're checking the user's token
@@ -180,11 +179,11 @@ function App() {
                     history.push("/signin");
                     //handleLogin(email, password)
                     setIsSuccessful(true);
-                    setIsInfoToolTipOpen(true);
+                    setIsInfoTooltipOpen(true);
                     return;
                 }
                 setIsSuccessful(false);
-                setIsInfoToolTipOpen(false);
+                setIsInfoTooltipOpen(false);
             })
             .catch((err) => console.log(err));
     }
@@ -195,7 +194,7 @@ function App() {
     //             if (!res) {
     //                 console.log(!res);
     //                 setIsSuccessful(false);
-    //                 setIsInfoToolTipOpen(true);
+    //                 setIsInfoTooltipOpen(true);
     //                 return;
     //             }
 
@@ -207,7 +206,7 @@ function App() {
     //         .catch((err) => {
     //             console.log(err);
     //             setIsSuccessful(false);
-    //             setIsInfoToolTipOpen(true);
+    //             setIsInfoTooltipOpen(true);
     //         });
     // }
     function handleLogin(email, password) {
@@ -217,7 +216,7 @@ function App() {
           if (!res) {
             console.log(!res);
             setIsSuccessful(false);
-            setIsInfoToolTipOpen(true);
+            setIsInfoTooltipOpen(true);
             history.push("/signin");
             return
           }
@@ -229,7 +228,7 @@ function App() {
         .catch((err) => {
           console.log(err);
           setIsSuccessful(false);
-          setIsInfoToolTipOpen(true);
+          setIsInfoTooltipOpen(true);
         });
     }
     function handleCheckToken() {
@@ -258,7 +257,6 @@ function App() {
     }
     return (
         <div className="page">
-            <div className="page">
                 <Router>
                     <currentUserContext.Provider value={currentUser}>
                         <Switch>
@@ -332,14 +330,13 @@ function App() {
                             link={imageLink}
                             title={imageTitle}
                         />
-                        <InfoToolTip
-                            isOpen={isInfoToolTipOpen}
+                        <InfoTooltip
+                            isOpen={isInfoTooltipOpen}
                             onClose={closeAllPopups}
                             valid={isSuccessful}
                         />
                     </currentUserContext.Provider>
                 </Router>
-            </div>
         </div>
     );
 }

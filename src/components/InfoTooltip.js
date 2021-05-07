@@ -2,7 +2,7 @@ import React from "react";
 import Check from "../images/Check.svg";
 import Xerror from "../images/Xerror.svg";
 
-function InfoToolTip(props) {
+function InfoTooltip(props) {
     return (
         <div
             className={`modal__toolTip ${
@@ -36,4 +36,4 @@ function InfoToolTip(props) {
     );
 }
 
-export default InfoToolTip;
+export default InfoTooltip;
