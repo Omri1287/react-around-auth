@@ -11,24 +11,15 @@ function Register({ handleRegistration }) {
 
     const history = useHistory();
 
-    function handleEmail(e) {
-        setEmail(e.target.value)
-        setError({...error, [e.target.name]: e.target.validationMessage})
-    }
-    function handlePassword(e) {
-        setPassword(e.target.value)
-        setError({...error, [e.target.name]: e.target.validationMessage})
-    }
+    // function handleEmail(e) {
+    //     setEmail(e.target.value)
+    //     setError({...error, [e.target.name]: e.target.validationMessage})
+    // }
+    // function handlePassword(e) {
+    //     setPassword(e.target.value)
+    //     setError({...error, [e.target.name]: e.target.validationMessage})
+    // }
 
-    function reset() {
-        setEmail('');
-        setPassword('')
-    }
-
-    function reset() {
-        setEmail('');
-        setPassword('')
-    }
     const handleSubmit = (e) => {
         e.preventDefault();
         handleRegistration(email, password);

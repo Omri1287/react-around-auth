@@ -174,7 +174,7 @@ function App() {
         return auth
             .register(email, password)
             .then((res) => {
-                if (res) {
+                if (res.status === 201) {
                     setLoggedIn(true);
                     history.push("/signin");
                     //handleLogin(email, password)
@@ -183,7 +183,7 @@ function App() {
                     return;
                 }
                 setIsSuccessful(false);
-                setIsInfoTooltipOpen(false);
+                setIsInfoTooltipOpen(true);
             })
             .catch((err) => console.log(err));
     }
